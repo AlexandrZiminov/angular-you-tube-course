@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {MyCalculatorComponent} from "./my-calculator/my-calculator.component";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink, MyCalculatorComponent],
+  standalone: false,
+  //imports: [RouterOutlet, RouterLink, MyCalculatorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

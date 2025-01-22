@@ -31,6 +31,24 @@
     width: 50px;
   }
 
+  &_modifier {
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    width: 30px;
+  }
+
+  &_history {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &_title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
   &_result {
     font-size: 21px;
 
