@@ -18,6 +18,11 @@ const routes: Routes = [
 
     },
     {
+        path: 'directives',
+        loadChildren: () => import('./directives/directives.module').then((m) => m.MyDirectivesModule),
+
+    },
+    {
         path: '**',
         component: MyEmptyPageComponent
     }

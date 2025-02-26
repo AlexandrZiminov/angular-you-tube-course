@@ -1,0 +1,59 @@
+<!--<div-->
+<!--    *ngFor="let color of colors;-->
+<!--    let i = index;-->
+<!--    let first = first;-->
+<!--    let last = last;-->
+<!--    let count = count">-->
+<!--    <span>{{ i }}. {{ first ? 'я первый' : '' }} {{ last ? 'я последний' : '' }} {{ color }}</span>-->
+<!--</div>-->
+
+<!--@for (color of colors; track color; let i = $index; let first = $first; let last = $last) {-->
+<!--    <div>-->
+<!--        <button (click)="currentColor = color">{{ color }}-->
+<!--        </button>-->
+<!--    </div>-->
+<!--} @empty {-->
+<!--    <span>Пустой массив</span>-->
+<!--}-->
+
+<!--<div *ngIf="isShow; else emptyState">-->
+<!--    <span>{{ isShow }}Я вывелся, так как значение true</span>-->
+<!--</div>-->
+
+<!--<button (click)="isShow = !isShow">Click!</button>-->
+
+<!--<ng-template #emptyState>-->
+<!--    <span> {{ isShow }} Я вывелся т к false </span>-->
+<!--</ng-template>-->
+
+<!--@if (isShow) {-->
+<!--    <span>{{ isShow }}</span>-->
+<!--} @else {-->
+<!--    <span>{{ isShow }}</span>-->
+<!--}-->
+
+<!--<div [ngSwitch]="currentColor">-->
+<!--    <span *ngSwitchCase="'red'">красный</span>-->
+<!--    <span *ngSwitchCase="'blue'">синий</span>-->
+<!--    <span *ngSwitchCase="'green'">зеленый</span>-->
+<!--    <span *ngSwitchCase="'yellow'">желтый</span>-->
+<!--</div>-->
+
+<!--@switch (currentColor) {-->
+<!--    @case ('red') {-->
+<!--        <span>красный</span>-->
+<!--    }-->
+<!--    @default {-->
+
+<!--    }-->
+<!--}-->
+
+<!--<span [ngStyle]="elementStyle"> Я текст, измененный полем класса </span>-->
+
+<h2 [myChangeColor]="colors">Custom directive</h2>
+
+<span *myIf="isShow">{{ isShow }}</span>
+
+<br/>
+
+<button (click)="isShow = !isShow">Click me!</button>
