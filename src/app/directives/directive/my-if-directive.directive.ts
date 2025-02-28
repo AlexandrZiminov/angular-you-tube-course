@@ -23,11 +23,12 @@ export class MyIfDirectiveDirective implements OnInit {
         this.displayTemplate();
     }
 
+    //comment
     private displayTemplate() {
         this.vcr.clear();
         if (this._show) {
             this.vcr.createEmbeddedView(this.templateRef);
         }
     }
-    
+
 }
