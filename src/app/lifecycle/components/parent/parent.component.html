@@ -1,0 +1,9 @@
+<p>parent works!</p>
+
+@if (show) {
+    <div style="padding: 2rem; border: 1px solid black">
+        <app-child [title]="obj" (eventChange)="handleEvent($event)">I am content of app-child</app-child>
+    </div>
+}
+
+<button (click)="show = !show">Destroy!</button>

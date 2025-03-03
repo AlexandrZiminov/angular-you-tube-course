@@ -23,6 +23,11 @@ const routes: Routes = [
 
     },
     {
+        path: 'lifecycle',
+        loadChildren: () => import('./lifecycle/life-cycle.module').then((m) => m.LifeCycleModule),
+
+    },
+    {
         path: '**',
         component: MyEmptyPageComponent
     }

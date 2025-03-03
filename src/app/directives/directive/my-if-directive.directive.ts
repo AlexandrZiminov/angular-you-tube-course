@@ -23,7 +23,6 @@ export class MyIfDirectiveDirective implements OnInit {
         this.displayTemplate();
     }
 
-    //commentsss
     private displayTemplate() {
         this.vcr.clear();
         if (this._show) {
