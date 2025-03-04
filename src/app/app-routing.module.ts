@@ -28,6 +28,11 @@ const routes: Routes = [
 
     },
     {
+        path: 'requests',
+        loadChildren: () => import('./requests/request-module.module').then((m) => m.RequestModule),
+
+    },
+    {
         path: '**',
         component: MyEmptyPageComponent
     }
