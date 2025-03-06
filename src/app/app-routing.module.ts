@@ -33,6 +33,10 @@ const routes: Routes = [
 
     },
     {
+        path: 'pipes',
+        loadChildren: () => import('./pipes/pipes.module').then((m) => m.PipeModule)
+    },
+    {
         path: '**',
         component: MyEmptyPageComponent
     }
