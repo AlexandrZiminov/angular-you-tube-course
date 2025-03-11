@@ -22,3 +22,78 @@
     </div>
     <button (click)="handleValue()" [disabled]="!myForm.valid">Send value</button>
 </div>
+
+<div class="login-form" [formGroup]="validatorsForm">
+    <h2>Custom validators</h2>
+    <div>
+        <label for="mail">Mail</label>
+        <input type="text" id="mail" formControlName="mail">
+        @if (!validatorsForm.controls.mail.valid && validatorsForm.controls.mail.touched) {
+            <small style="color: red">Неправильно введены данные</small>
+        }
+    </div>
+    <div>
+        <label for="password_one">Введите пароль</label>
+        <input type="password" id="password_one" formControlName="password_one">
+    </div>
+    <div>
+        <label for="password_two">Введите пароль еще раз</label>
+        <input type="password" id="password_two" formControlName="password_two">
+    </div>
+    @if (validatorsForm.errors?.["PasswordDoNotMatch"]) {
+        <div>
+            <span style="color: red">Пароли не совпадают</span>
+        </div>
+    }
+</div>
+
+<form class="login-form" [formGroup]="fbForm" (ngSubmit)="onSubmit()">
+    <h2>Dynamic form</h2>
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name">
+    </div>
+
+    <div class="login-form__array" formArrayName="skills">
+        @for (skill of skills.controls; track skill; let i = $index) {
+
+            <div [formGroupName]="i">
+                <label [for]="i + 'skill'">{{ i + 1 }} | Skill</label>
+                <input [id]="i + 'skill'" type="text" formControlName="skill">
+                <label [for]="i + 'exp'">{{ i + 1 }} | Experience</label>
+                <input [id]="i + 'exp'" type="text" formControlName="experience">
+                <button (click)="removeSkill(i)">Delete</button>
+            </div>
+        }
+    </div>
+
+    <button (click)="addSkill()">Add Skill</button>
+    <button type="submit">Submit</button>
+</form>
+
+<div class="login-form">
+    <h2>Template-driven form</h2>
+    <pre>{{ templateForm | json }}</pre>
+
+    <div>
+        <label for="templateLogin">Login</label><input id="templateLogin" [(ngModel)]="templateForm.login" type="text">
+    </div>
+    <div>
+        <label for="templateEmail">Email</label><input id="templateEmail" [(ngModel)]="templateForm.email" type="text">
+    </div>
+    <div>
+        <label for="templatePassword">Password</label><input id="templatePassword"
+                                                             [(ngModel)]="templateForm.password"
+                                                             type="text" type="password">
+    </div>
+</div>
+
+<div class="login-form" [formGroup]="customForm">
+    <h2>Custom control</h2>
+
+    <pre>{{ customForm.value | json }}</pre>
+
+    <app-rate formControlName="rate" [options]="ratesOptions"></app-rate>
+</div>
+
