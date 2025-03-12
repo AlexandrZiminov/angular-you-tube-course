@@ -1,0 +1,31 @@
+<div class="block">
+    <h2>Ng-container & ng-template</h2>
+
+    @for (item of arr; track $index) {
+        <span>{{ item }}</span>
+    }
+
+    <p>first</p>
+    <ng-container *ngTemplateOutlet="second; context: {$implicit: 'Hello world', someText: 'Lorem Ipsum'}">
+        <span>sadasdasdsa</span>
+    </ng-container>
+    <p>third</p>
+
+    <button (click)="isShow = !isShow">Click me</button>
+
+    <ng-template #second let-title let-someText="someText">
+        <p>{{ someText }}</p>
+        <p>{{ title }}</p>
+        <p>second</p>
+    </ng-template>
+</div>
+
+<div class="block">
+    <p #paragraph>Lorem Ipsum</p>
+    <ng-template #paragraphTemplate>
+        <p>Ipsum Lorem</p>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="paragraphTemplate"></ng-container>
+    <app-child-decorator #component></app-child-decorator>
+    <app-child-decorator #component></app-child-decorator>
+</div>
