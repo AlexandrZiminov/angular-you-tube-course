@@ -1,4 +1,10 @@
 <div class="block">
+    <app-child-decorator>
+        <p #paragraph>Content works</p>
+    </app-child-decorator>
+</div>
+
+<div class="block">
     <h2>Ng-container & ng-template</h2>
 
     @for (item of arr; track $index) {
@@ -29,3 +35,5 @@
     <app-child-decorator #component></app-child-decorator>
     <app-child-decorator #component></app-child-decorator>
 </div>
+
+

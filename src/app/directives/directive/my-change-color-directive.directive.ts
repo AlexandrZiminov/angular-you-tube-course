@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
+import {AfterViewInit, Directive, HostBinding, HostListener} from '@angular/core';
 
 @Directive({
     selector: '[myChangeColor]'
@@ -6,24 +6,33 @@ import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
 
 export class MyChangeColorDirectiveDirective implements AfterViewInit {
 
-    @Input('myChangeColor') colors?: string[]
+    @HostBinding('style.color') color: string = 'purple';
 
-    private _el: ElementRef;
+    @HostBinding('style.background') background: string = 'transparent';
 
-    constructor(el: ElementRef) {
-        this._el = el;
+    @HostListener('document:click', ['$event']) handleClick(event: PointerEvent): void {
+        console.log('click', event);
+    }
+
+    @HostListener('mouseenter', ['$event']) handleEnter(): void {
+        this.background = this.getChangeColor()
+    }
+
+    @HostListener('mouseleave', ['$event']) handleLeave(): void {
+        this.background = 'transparent';
+    }
+
+    constructor() {
     }
 
     ngAfterViewInit() {
-        this.changeColor(this._el)
+        setInterval(() => {
+            this.color = this.getChangeColor()
+        }, 2_500)
     }
 
-    private changeColor(el: ElementRef) {
-        if (this.colors && this.colors.length != 0) {
-            setInterval(() => {
-                el.nativeElement.style.color = this.colors![Math.floor(Math.random() * this.colors!.length)];
-            }, 2_000)
-        }
+    private getChangeColor(): string {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
     }
 
 }
