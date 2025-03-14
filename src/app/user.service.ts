@@ -8,6 +8,8 @@ export class UserService {
 
     public isUserLogged = new BehaviorSubject<boolean>(false);
 
+    public StringSubject$ = new BehaviorSubject<string>('one');
+
     constructor() {
     }
 

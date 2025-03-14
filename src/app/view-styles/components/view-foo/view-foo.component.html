@@ -1,5 +1,13 @@
+@for (item of todoArr; track $index) {
+    <app-todo-item [todo]="item"></app-todo-item>
+}
+
 <p>view-foo works!</p>
 
 <app-view-bar></app-view-bar>
 
 <button (click)="login()">Login</button>
+
+<button (click)="changeText()">Change text</button>
+
+<button (click)="changeStream()">Change stream</button>
