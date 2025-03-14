@@ -1,43 +1,46 @@
+<button (click)="canLeave = !canLeave">leave</button>
+
 <div class="calculator">
 
-  <h2 class="calculator_title">Calculator</h2>
+    <h2 class="calculator_title">Calculator</h2>
 
-  <ng-container *ngFor="let group of calcGroups; let i = index;">
-    <div class="calculator_container">
-      <select class="calculator_modifier" [(ngModel)]="group.first.modificator">
-        <option [value]="modifier.value" *ngFor="let modifier of calcModifiers | keyvalue"> {{ modifier.value }}
-        </option>
-      </select>
-      <input type="number" class="calculator_input" [(ngModel)]="group.first.value">
-      <select class="calculator_select" [(ngModel)]="group.operation">
-        <option [value]="operation.value" *ngFor="let operation of calcOperations | keyvalue"> {{ operation.value }}
-        </option>
-      </select>
-      <select class="calculator_modifier" [(ngModel)]="group.second.modificator">
-        <option [value]="modifier.value" *ngFor="let modifier of calcModifiers | keyvalue"> {{ modifier.value }}
-      </select>
-      <input type="number" class="calculator_input" [(ngModel)]="group.second.value">
+    <ng-container *ngFor="let group of calcGroups; let i = index;">
+        <div class="calculator_container">
+            <select class="calculator_modifier" [(ngModel)]="group.first.modificator">
+                <option [value]="modifier.value" *ngFor="let modifier of calcModifiers | keyvalue"> {{ modifier.value }}
+                </option>
+            </select>
+            <input type="number" class="calculator_input" [(ngModel)]="group.first.value">
+            <select class="calculator_select" [(ngModel)]="group.operation">
+                <option [value]="operation.value"
+                        *ngFor="let operation of calcOperations | keyvalue"> {{ operation.value }}
+                </option>
+            </select>
+            <select class="calculator_modifier" [(ngModel)]="group.second.modificator">
+                <option [value]="modifier.value" *ngFor="let modifier of calcModifiers | keyvalue"> {{ modifier.value }}
+            </select>
+            <input type="number" class="calculator_input" [(ngModel)]="group.second.value">
 
-      <button *ngIf="i != 0" (click)="removeGroup(i)" class="calculator_button">Remove group</button>
+            <button *ngIf="i != 0" (click)="removeGroup(i)" class="calculator_button">Remove group</button>
+        </div>
+
+        <select class="calculator_select" [(ngModel)]="operationsBetweenGroups[i]"
+                *ngIf="operationsBetweenGroups.length > i">
+            <option [value]="operation.value" *ngFor="let operation of calcOperations | keyvalue"> {{ operation.value }}
+            </option>
+        </select>
+    </ng-container>
+
+    <span class="calculator_result">Result: <span>{{ result ? result : 'Press calculate' }}</span></span>
+
+    <div class="calculator_history">
+        <span class="calculator_history-title">История операций:</span>
+        <span *ngFor="let obj of history; let i = index">{{ i + 1 }} {{ obj }}</span>
     </div>
 
-    <select class="calculator_select" [(ngModel)]="operationsBetweenGroups[i]"
-            *ngIf="operationsBetweenGroups.length > i">
-      <option [value]="operation.value" *ngFor="let operation of calcOperations | keyvalue"> {{ operation.value }}
-      </option>
-    </select>
-  </ng-container>
-
-  <span class="calculator_result">Result: <span>{{ result ? result : 'Press calculate' }}</span></span>
-
-  <div class="calculator_history">
-    <span class="calculator_history-title">История операций:</span>
-    <span *ngFor="let obj of history; let i = index">{{ i + 1 }} {{ obj }}</span>
-  </div>
-
-  <div>
-    <button class="calculator_button" (click)="calcGroup()">Calculate</button>
-    <button class="calculator_button" (click)="addGroup()">Add group</button>
-  </div>
+    <div>
+        <button class="calculator_button" (click)="calcGroup()">Calculate</button>
+        <button class="calculator_button" (click)="addGroup()">Add group</button>
+    </div>
 
 </div>

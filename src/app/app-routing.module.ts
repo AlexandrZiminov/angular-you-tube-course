@@ -2,11 +2,15 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MyCalculatorComponent} from "./calculator/components/my-calculator/my-calculator.component";
 import {MyEmptyPageComponent} from "./components/empty-route/empty-route.component";
+import {isLoggedGuardFn} from "./is-logged-guard.fn";
 
 const routes: Routes = [
     {
         path: 'calculator',
         component: MyCalculatorComponent,
+        canDeactivate: [
+            (component: MyCalculatorComponent) => !component.canLeave,
+        ]
     },
     {
         path: '', redirectTo: 'calculator', pathMatch: 'full',
@@ -30,6 +34,7 @@ const routes: Routes = [
     {
         path: 'requests',
         loadChildren: () => import('./requests/request-module.module').then((m) => m.RequestModule),
+        canActivate: [isLoggedGuardFn],
 
     },
     {
@@ -43,6 +48,10 @@ const routes: Routes = [
     {
         path: 'decorators',
         loadChildren: () => import('./decorators/decorators.module').then((m) => m.DecoratorsModule)
+    },
+    {
+        path: 'view-styles',
+        loadChildren: () => import('./view-styles/view-styles.module').then((m) => m.ViewStylesModule)
     },
     {
         path: '**',
