@@ -1,17 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {UserService} from "./user.service";
 
 @Component({
     selector: 'app-root',
-    standalone: false,
-    //imports: [RouterOutlet, RouterLink, MyCalculatorComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    title = 'angular-you-tube-course';
-    tooltip = "Мой тултип";
 
-    showMessage() {
-        alert("Wow!");
+    public userService: UserService = inject(UserService);
+
+    // constructor(private userService: UserService) {
+    //     this.userService
+    // }
+
+    public someMethod() {
     }
+
 }
