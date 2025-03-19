@@ -1,20 +1,24 @@
-import {Component, inject} from '@angular/core';
-import {UserService} from "./user.service";
+import {ChangeDetectionStrategy, Component, computed, effect, signal} from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+    styleUrl: './app.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 
-    public userService: UserService = inject(UserService);
+    public counter = signal<number>(0);
 
-    // constructor(private userService: UserService) {
-    //     this.userService
-    // }
+    public doubleCounter = computed(() => this.counter() * 2);
 
-    public someMethod() {
+    constructor() {
+        effect(() => {
+            console.log(`signal triggered ${this.counter()}`);
+        });
     }
 
+    public plus(): void {
+        this.counter.update(value => value + 1);
+    }
 }
